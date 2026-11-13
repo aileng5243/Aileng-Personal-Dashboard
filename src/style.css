@@ -1,35 +1,37 @@
-/* Business Dashboard Starter — the redesigned look (Oct 2026): white rounded cards on a light warm-grey
-   canvas, the brand's 深酒红 wine for emphasis and a soft rose tint for selection, near-black
-   pill buttons. Light only by design. Every text colour was checked for at least 4.5:1 contrast
-   on the surface it sits on (2026-10-20); chart colours are the validated steps of the earlier look
-   (CVD ΔE ≥ 16, ≥ 3:1 on the card). Gold is decoration only, never text.
+/* Business Dashboard Starter — the pink-and-purple look (Nov 2026): frosted white cards on a soft
+   lavender-to-pink canvas, deep violet for headings and emphasis, a pink-to-purple gradient for the
+   main button, the selected menu item and the main figure. Light only by design. Text colours keep
+   at least 4.5:1 contrast on the surface they sit on (white text on the gradient: ≥ 4.6:1 at both
+   ends); chart marks keep ≥ 3:1 on the card. Pink is decoration and chart colour, never body text.
    No web fonts: the page must work offline, so it uses the fonts already on the computer. */
 :root {
   color-scheme: light;
   /* brand */
-  --brand: #5A1A2B;        /* 深酒红: emphasis, the reporting date, the dark alert card */
-  --brand-soft: #F3E1E8;   /* rose tint: selected menu item, the main figure's card */
-  --brand-ink: #5A1A2B;    /* text on the rose tint (10:1) */
-  --gold: #B8963E;         /* 古铜金: decoration only (the logo stripe) */
-  --page: #EFEDE9;         /* canvas behind the cards */
+  --brand: #4C1D95;        /* deep violet: emphasis, the reporting date, links (10:1 on white) */
+  --brand-soft: #F6E8FB;   /* lavender-pink tint: selected items */
+  --brand-ink: #4C1D95;    /* text on the tint (9:1) */
+  --gold: #EC4899;         /* pink: decoration only (the logo) */
+  --grad: linear-gradient(135deg, #DB2777 0%, #9333EA 100%);       /* buttons, alert card; white text ≥ 4.6:1 */
+  --grad-soft: linear-gradient(135deg, #FDE7F3 0%, #EFE4FD 100%);  /* main figure, selected menu item */
+  --page: #F5F0FB;         /* canvas behind the cards (the body adds a soft gradient) */
   --surface: #FFFFFF;      /* cards */
-  --surface-2: #F5F3EF;    /* soft fill: hover, tracks, code, side panel items */
-  --border: #E6E1DA;       /* hairlines */
-  --warm-grey: #8A8084;    /* lines and dashed note outline */
+  --surface-2: #F7F2FC;    /* soft fill: hover, tracks, code, side panel items */
+  --border: #EBE3F5;       /* hairlines */
+  --warm-grey: #8B7FA0;    /* lines and dashed note outline */
   /* text */
-  --ink: #221B1D;          /* body text, 16:1 on white */
-  --ink-2: #574D50;        /* secondary text, 8:1 */
-  --muted: #6B6164;        /* captions, 6.0:1 on white, 5.1:1 on the canvas */
+  --ink: #261A3D;          /* body text, 15:1 on white */
+  --ink-2: #554868;        /* secondary text, 8:1 */
+  --muted: #6B5F80;        /* captions, 5.9:1 on white, 5.3:1 on the canvas */
   /* buttons */
-  --btn: #221B1D;          /* primary button */
-  --btn-hover: #000000;
-  /* charts (validated: lightness band, chroma, CVD ΔE ≥ 16, ≥ 3:1 on card) */
-  --accent: #93324B;       /* series 1: wine step */
-  --accent-soft: #F3E1E8;
-  --series-2: #B08A33;     /* series 2: gold step */
-  --series-3: #2370B5;     /* blue */
-  --grid: #EEEAE4;
-  --axis: #D3CABF;
+  --btn: #9333EA;          /* solid fallback for the gradient (toast, chips) */
+  --btn-hover: #7E22CE;
+  /* charts (≥ 3:1 on the card) */
+  --accent: #A855F7;       /* series 1: purple */
+  --accent-soft: #F3E8FF;
+  --series-2: #EC4899;     /* series 2: pink */
+  --series-3: #2563EB;     /* blue */
+  --grid: #F0EAF7;
+  --axis: #D9CDE8;
   /* calendar types: tint + text (≥ 7:1 on the tint) + dot */
   --pay-bg: #FBEBCB;  --pay-ink: #6B4205;  --pay-dot: #C9821F;
   --fol-bg: #ECE6F8;  --fol-ink: #3E2F78;  --fol-dot: #7B66C9;
@@ -46,7 +48,7 @@
   --critical: #C2410C;
   --radius: 14px;          /* controls and small panels */
   --radius-lg: 20px;       /* cards */
-  --shadow: 0 1px 2px rgba(34, 27, 29, 0.04);
+  --shadow: 0 1px 2px rgba(76, 29, 149, 0.04), 0 8px 24px rgba(124, 58, 237, 0.07);
   --nav-w: 236px;
   --font: "Segoe UI Variable Text", "Segoe UI", -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei UI", "Microsoft YaHei", "Noto Sans SC", "Noto Sans CJK SC", "Source Han Sans SC", system-ui, sans-serif;
 }
@@ -385,3 +387,42 @@ details summary { cursor: pointer; color: var(--brand); font-size: 14px; margin:
 :focus-visible { outline: 2px solid var(--series-3); outline-offset: 2px; }
 .ok { color: var(--good-text); } .bad { color: var(--critical); } .warn { color: var(--warning-text); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ===== pink-and-purple look: canvas, frosted cards, gradients ===== */
+html, body { background: var(--page); }
+body { background: radial-gradient(1200px 700px at 0% 0%, #FBEAF4 0%, transparent 60%), radial-gradient(1000px 700px at 100% 0%, #EEE6FD 0%, transparent 60%), linear-gradient(180deg, #F8F3FC 0%, #F5F0FB 100%); background-attachment: fixed; }
+h1 { color: var(--brand); font-size: 30px; letter-spacing: -0.02em; font-weight: 800; }
+h1 .en { color: var(--muted); }
+h2 { color: var(--ink); }
+.brand-mark { background: var(--grad); box-shadow: 0 4px 10px rgba(219, 39, 119, 0.25); border-radius: 8px; }
+.topbar { background: rgba(248, 243, 252, 0.72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+.topbar .brand { color: var(--brand); }
+.ribbon { background: linear-gradient(90deg, #FCE7F3, #EDE4FD); }
+.card, .tile, .sidenav, .banner, .scn-file, .modal, .drawer { border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: var(--shadow); }
+.card, .tile, .sidenav, .banner { background: rgba(255, 255, 255, 0.78); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.sidenav { border-radius: 24px; }
+.sidenav a.active { background: var(--grad-soft); box-shadow: 0 2px 8px rgba(219, 39, 119, 0.10); }
+.sidenav a.active .ico { color: #DB2777; }
+.sidenav a.active .nav-label .en { color: #6D3FA8; }
+.btn.primary, .segmented button.active, .pill-tabs button.active { background: var(--grad); color: #fff; box-shadow: 0 4px 12px rgba(219, 39, 119, 0.22); }
+.btn.primary:hover { background: var(--grad); filter: brightness(0.94); }
+.btn, .segmented, select, input[type="text"], input[type="date"], input[type="search"], textarea { border-color: var(--border); }
+.btn:hover { background: var(--brand-soft); }
+.tile .label { font-weight: 600; }
+.tile.hero { background: var(--grad-soft); border-color: #F7DDEE; }
+.tile.hero .label, .tile.hero .foot { color: #6D3FA8; }
+.tile.hero .value { color: var(--brand); }
+.tile.alert { background: var(--grad); border-color: transparent; box-shadow: 0 8px 24px rgba(147, 51, 234, 0.25); }
+.tile.alert .label, .tile.alert .foot { color: #FCE7F3; }
+th { background: var(--surface-2); color: var(--muted); }
+tr.clickable:hover { background: #FBF5FE; }
+.status.ai, .ai-tag, .rd-pill, .cal-day.today .d { background: var(--grad); }
+.hbar .fill { background: linear-gradient(90deg, #EC4899, #A855F7); }
+.chart .bar { fill: url(#bar-grad); }
+.chart-tip, .toast { background: var(--brand); }
+.cal-day:hover { background: #FBF5FE; }
+.cal-day.selected, .cal-wday.selected { background: #FAF3FE; }
+.cal-day.weekend { background: #FCFAFE; }
+.agenda-item:hover { background: #F1E9FA; }
+:focus-visible { outline-color: #9333EA; }
+#main:focus-visible { outline: none; } /* focused by the page change for screen readers, not by the keyboard */

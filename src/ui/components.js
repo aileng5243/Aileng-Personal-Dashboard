@@ -103,7 +103,10 @@ export function trendChart(trend, rd) {
   const svg = ns('svg', { viewBox: `0 0 ${W} ${H}`, class: 'chart', role: 'img', 'aria-label': tr('Monthly order value bar chart') });
   const pat = ns('pattern', { id: 'hatch', width: 6, height: 6, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(45)' });
   add(pat, ns('line', { x1: 0, y1: 0, x2: 0, y2: 6, stroke: 'var(--accent)', 'stroke-width': 2 }));
-  add(svg, add(ns('defs', {}), pat));
+  // the bars' pink-to-purple fill (style.css: .chart .bar)
+  const grad = ns('linearGradient', { id: 'bar-grad', x1: 0, y1: 0, x2: 0, y2: 1 });
+  add(grad, ns('stop', { offset: '0%', 'stop-color': '#EC4899' }), ns('stop', { offset: '100%', 'stop-color': '#A855F7' }));
+  add(svg, add(ns('defs', {}), pat, grad));
   const innerW = W - padL - padR, innerH = H - padT - padB;
   const step = innerW / Math.max(1, trend.length);
   const barW = Math.min(48, step * 0.6);
